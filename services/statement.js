@@ -40,11 +40,11 @@ function amountFor(aPerformance) {
 }
 
 function totalAmount() {
-	let totalAmount = 0;
+	let result = 0;
 	for (let perf of invoice.performances) {
-		totalAmount += amountFor(perf);
+		result += amountFor(perf);
 	}
-	return totalAmount;
+	return result;
 }
 
 function playFor(aPerformance) {
@@ -52,11 +52,11 @@ function playFor(aPerformance) {
 }
 
 function totalVolumeCredits() {
-	let volumeCredits = 0;
+	let result = 0;
 	for (let perf of invoice.performances) {
-		volumeCredits += volumeCreditsFor(perf);
+		result += volumeCreditsFor(perf);
 	}
-	return volumeCredits;
+	return result;
 }
 
 function usd(aNumber) {
@@ -66,8 +66,8 @@ function usd(aNumber) {
 }
 
 function volumeCreditsFor(aPerformance) {
-	let volumeCredits = 0;
-	volumeCredits += Math.max(aPerformance.audience - 30, 0);
-	if ("comedy" === playFor(aPerformance).type) volumeCredits += Math.floor(aPerformance.audience / 5);
-	return volumeCredits;
+	let result = 0;
+	result += Math.max(aPerformance.audience - 30, 0);
+	if ("comedy" === playFor(aPerformance).type) result += Math.floor(aPerformance.audience / 5);
+	return result;
 }
