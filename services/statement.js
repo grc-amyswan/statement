@@ -5,9 +5,6 @@ export default function statement (invoice) {
 	let volumeCredits = 0;
 	let result = `Statement for ${invoice.customer}\n`;
 	
-	const format = new Intl.NumberFormat("en-US",
-		{ style: "currency", currency: "USD",
-			minimumFractionDigits: 2 }).format;
 	for (let perf of invoice.performances) {
 		volumeCredits += volumeCreditsFor(perf);
 		// print line for this order
@@ -40,6 +37,12 @@ function amountFor(aPerformance) {
 			throw new Error(`unknown type: ${playFor(aPerformance).type}`);
 	}
 	return result;
+}
+
+function format(aNumber) {
+	return new Intl.NumberFormat("en-US",
+		{ style: "currency", currency: "USD",
+		  minimumFractionDigits: 2 }).format(aNumber);
 }
 
 function playFor(aPerformance) {
